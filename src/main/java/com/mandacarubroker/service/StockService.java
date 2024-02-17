@@ -28,7 +28,7 @@ public class StockService {
         return stockRepository.findById(id);
     }
 
-    public Stock createStock(RequestStockDTO data) {
+    public Stock createAndValidadeStock(RequestStockDTO data) {
         Stock newAction = new Stock(data);
         validateRequestStockDTO(data);
         return stockRepository.save(newAction);
@@ -66,12 +66,5 @@ public class StockService {
 
             throw new ConstraintViolationException(errorMessage.toString(), violations);
         }
-    }
-
-    public void validateAndCreateStock(RequestStockDTO data) {
-        validateRequestStockDTO(data);
-
-        Stock novaAcao = new Stock(data);
-        stockRepository.save(novaAcao);
     }
 }
