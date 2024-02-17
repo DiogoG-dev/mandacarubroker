@@ -32,7 +32,7 @@ public class StockController {
     @PostMapping
     public ResponseEntity<Stock> createStock(@RequestBody @Valid RequestStockDTO data) {
         Stock createdStock = stockService.createStock(data);
-        return ResponseEntity.ok(createdStock);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdStock);
     }
 
     @PutMapping("/{id}")
