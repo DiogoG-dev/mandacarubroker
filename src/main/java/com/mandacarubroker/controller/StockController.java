@@ -26,7 +26,8 @@ public class StockController {
 
     @GetMapping("/{id}")
     public Stock getStockById(@PathVariable String id) {
-        return stockService.getStockById(id).orElse(null);
+        Stock stock = stockService.getStockById(id).orElse(null);
+        return stock != null ? ResponseEntity.ok(stock) : ResponseEntity.notFound().build();
     }
 
     @PostMapping
