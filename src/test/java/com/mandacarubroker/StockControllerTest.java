@@ -57,7 +57,7 @@ class StockControllerTest {
     }
     
     @Test
-    void updateStock_Exists_ShouldReturnUpdatedStock() {
+    void updateStockShouldReturnUpdatedStock() {
         // Arrange
         String stockId = "1";
         Stock updatedStock = new Stock();
@@ -69,3 +69,13 @@ class StockControllerTest {
         // Assert
         assertNotNull(result);
     }
+    
+    @Test
+    void deleteStock_ShouldInvokeServiceMethod() {
+        // Act
+        stockController.deleteStock("1");
+
+        // Assert
+        verify(stockService, times(1)).deleteStock("1");
+    }
+}
