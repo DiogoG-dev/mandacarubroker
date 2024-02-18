@@ -37,4 +37,18 @@ class StockServiceTest {
         verify(stockRepository, times(1)).findById(stockId);
     }
     
+    @Test
+    void createAndValidateStock() {
+        // Arrange
+        RequestStockDTO requestStockDTO = new RequestStockDTO();
+        Stock stock = new Stock(requestStockDTO);
+        when(stockRepository.save(stock)).thenReturn(stock);
+
+        // Act
+        Stock result = stockService.createAndValidadeStock(requestStockDTO);
+
+        // Assert
+        assertNotNull(result);
+        verify(stockRepository, times(1)).save(stock);
+    }
 }
