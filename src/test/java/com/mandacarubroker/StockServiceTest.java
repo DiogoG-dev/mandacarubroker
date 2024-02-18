@@ -20,4 +20,20 @@ class StockServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+
+    @Test
+    void getStockById() {
+        // Arrange
+        String stockId = "123";
+        Stock stock = new Stock();
+        when(stockRepository.findById(stockId)).thenReturn(Optional.of(stock));
+
+        // Act
+        Optional<Stock> result = stockService.getStockById(stockId);
+
+        // Assert
+        assertTrue(result.isPresent());
+        assertEquals(stock, result.get());
+        verify(stockRepository, times(1)).findById(stockId);
+    }
 }
