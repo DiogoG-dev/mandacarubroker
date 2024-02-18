@@ -25,3 +25,17 @@ class StockControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
+    
+    @Test
+    void getStockByIdShouldReturnStock() {
+        // Arrange
+        String stockId = "1";
+        Stock mockStock = new Stock();
+        when(stockService.getStockById(stockId)).thenReturn(Optional.of(mockStock));
+
+        // Act
+        Stock result = stockController.getStockById(stockId);
+
+        // Assert
+        assertNotNull(result);
+    }
