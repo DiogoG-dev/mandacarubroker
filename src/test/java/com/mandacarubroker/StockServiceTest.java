@@ -36,4 +36,5 @@ class StockServiceTest {
         assertEquals(stock, result.get());
         verify(stockRepository, times(1)).findById(stockId);
     }
+    
 }
