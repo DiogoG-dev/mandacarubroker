@@ -7,3 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Optional;
+
+class StockServiceTest {
+
+    @Mock
+    private StockRepository stockRepository;
+
+    @InjectMocks
+    private StockService stockService;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+}
