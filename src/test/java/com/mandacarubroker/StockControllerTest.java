@@ -39,3 +39,19 @@ class StockControllerTest {
         // Assert
         assertNotNull(result);
     }
+    
+    @Test
+    void createStock_ShouldReturnCreatedStock() {
+        // Arrange
+        RequestStockDTO requestStockDTO = new RequestStockDTO();
+        Stock createdStock = new Stock();
+        when(stockService.createStock(requestStockDTO)).thenReturn(createdStock);
+
+        // Act
+        ResponseEntity<Stock> result = stockController.createStock(requestStockDTO);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(HttpStatus.CREATED, result.getStatusCode());
+        assertEquals(createdStock, result.getBody());
+    }
