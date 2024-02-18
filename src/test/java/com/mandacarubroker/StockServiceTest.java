@@ -70,4 +70,16 @@ class StockServiceTest {
         verify(stockRepository, times(1)).findById(stockId);
         verify(stockRepository, times(1)).save(existingStock);
     }
+    
+    @Test
+    void deleteStock() {
+        // Arrange
+        String stockId = "123";
+
+        // Act
+        stockService.deleteStock(stockId);
+
+        // Assert
+        verify(stockRepository, times(1)).deleteById(stockId);
+    }
 }
