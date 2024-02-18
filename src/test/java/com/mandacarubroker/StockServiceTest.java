@@ -51,4 +51,23 @@ class StockServiceTest {
         assertNotNull(result);
         verify(stockRepository, times(1)).save(stock);
     }
+
+    @Test
+    void updateStock() {
+        // Arrange
+        String stockId = "123";
+        Stock existingStock = new Stock();
+        Stock updatedStock = new Stock();
+        when(stockRepository.findById(stockId)).thenReturn(Optional.of(existingStock));
+        when(stockRepository.save(existingStock)).thenReturn(existingStock);
+
+        // Act
+        Optional<Stock> result = stockService.updateStock(stockId, updatedStock);
+
+        // Assert
+        assertTrue(result.isPresent());
+        assertEquals(existingStock, result.get());
+        verify(stockRepository, times(1)).findById(stockId);
+        verify(stockRepository, times(1)).save(existingStock);
+    }
 }
