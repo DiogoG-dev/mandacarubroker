@@ -12,3 +12,16 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
+class StockControllerTest {
+
+    @Mock
+    private StockService stockService;
+
+    @InjectMocks
+    private StockController stockController;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
