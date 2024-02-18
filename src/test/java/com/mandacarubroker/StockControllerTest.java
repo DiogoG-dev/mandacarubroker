@@ -55,3 +55,17 @@ class StockControllerTest {
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
         assertEquals(createdStock, result.getBody());
     }
+    
+    @Test
+    void updateStock_Exists_ShouldReturnUpdatedStock() {
+        // Arrange
+        String stockId = "1";
+        Stock updatedStock = new Stock();
+        when(stockService.updateStock(eq(stockId), any(Stock.class))).thenReturn(Optional.of(updatedStock));
+
+        // Act
+        Stock result = stockController.updateStock(stockId, updatedStock);
+
+        // Assert
+        assertNotNull(result);
+    }
